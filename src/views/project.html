@@ -69,12 +69,12 @@
                 <fieldset>
                     <legend>Sobre a aula</legend>
                     <div class="select-block">
-                        <label for="subject">Matéria</label>
-                        <select name="subject" id="subject" required>
+                        <label for="technology">Matéria</label>
+                        <select name="technology" id="technology" required>
                             <option value="">Selecione uma opção</option>
-                            {%for subject in subjects%}
+                            {%for technology in technologys%}
                                 <option value="{{loop.index}}">
-                                    {{subject}}
+                                    {{technology}}
                                 </option>
                             {%endfor%}
                         </select>

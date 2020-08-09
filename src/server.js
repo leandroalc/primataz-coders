@@ -1,10 +1,10 @@
-const proffys = [
+const devs = [
     {
         name: "Diego Juremo",
         avatar: "https://avatars2.githubusercontent.com/u/2254731?s=460&amp;u=0ba16a79456c2f250e7579cb388fa18c5c2d7d65&amp;v=4",
         whatsapp:"81994545459",
-        bio:"Entusiasta das melhores tecnologias de química avançada.<br><br>Apaixonado por explodir coisas em laboratório e por mudar a vida das pessoas através de experiências. Mais de 200.000 pessoas já passaram por uma das minhas explosões.",
-        subject:"Química",
+        bio:"Entusiasta das melhores tecnologias de química avançada. Apaixonado por explodir coisas em laboratório e por mudar a vida das pessoas através de experiências. Mais de 200.000 pessoas já passaram por uma das minhas explosões.",
+        technology:"Full-Stack",
         cost:"20",
         weekday:[0],
         time_from:[720],
@@ -14,8 +14,8 @@ const proffys = [
         name: "Diego Jurandir",
         avatar: "https://avatars2.githubusercontent.com/u/2254731?s=460&amp;u=0ba16a79456c2f250e7579cb388fa18c5c2d7d65&amp;v=4",
         whatsapp:"81994545459",
-        bio:"Entusiasta das melhores tecnologias de química avançada.<br><br>Apaixonado por explodir coisas em laboratório e por mudar a vida das pessoas através de experiências. Mais de 200.000 pessoas já passaram por uma das minhas explosões.",
-        subject:"Química",
+        bio:"Entusiasta das melhores tecnologias de química avançada. Apaixonado por explodir coisas em laboratório e por mudar a vida das pessoas através de experiências. Mais de 200.000 pessoas já passaram por uma das minhas explosões.",
+        technology:"Fron-end",
         cost:"20",
         weekday:[0],
         time_from:[720],
@@ -25,8 +25,8 @@ const proffys = [
         name: "Diego Jucelino",
         avatar: "https://avatars2.githubusercontent.com/u/2254731?s=460&amp;u=0ba16a79456c2f250e7579cb388fa18c5c2d7d65&amp;v=4",
         whatsapp:"81994545459",
-        bio:"Entusiasta das melhores tecnologias de química avançada.<br><br>Apaixonado por explodir coisas em laboratório e por mudar a vida das pessoas através de experiências. Mais de 200.000 pessoas já passaram por uma das minhas explosões.",
-        subject:"Química",
+        bio:"Entusiasta das melhores tecnologias de química avançada. Apaixonado por explodir coisas em laboratório e por mudar a vida das pessoas através de experiências. Mais de 200.000 pessoas já passaram por uma das minhas explosões.",
+        technology:"Back-end",
         cost:"20",
         weekday:[0],
         time_from:[720],
@@ -34,17 +34,15 @@ const proffys = [
     }
 ]; // lista de objetos
 
-const subjects = [
-    "Artes",
-    "Biologia",
-    "Ciências",
-    "Educação Física",
-    "Física",
-    "Geografia",
-    "História",
-    "Matemática",
-    "Português",
-    "Química",
+const technologys = [
+    "Front-end",
+    "Back-end",
+    "Full-Stack",
+    "Mobile",
+    "Banco de Dados",
+    "Cloud",
+    "I.A",
+    "Data Science",
 ]; //lista de objetos
 
 const weekdays = [
@@ -57,35 +55,35 @@ const weekdays = [
     "Sábado",
 ]; //lista de objetos
 
-function getSubject(subjectNumber){
-    const position = +subjectNumber - 1;
+function getTechnology(technologyNumber){
+    const position = +technologyNumber - 1;
     
-    return subjects[position]
+    return technologys[position]
 }
 
 function pageLanding(req, res){
     return res.render("index.html");
 }
 
-function pageStudy(req, res){
+function pageContract(req, res){
     const filters = req.query;
-    return res.render("study.html", {proffys, filters, subjects, weekdays});
+    return res.render("contract.html", {devs, filters, technologys, weekdays});
 }
 
-function pageGiveClasses(req, res){
+function pageProject(req, res){
     const data = req.query;
 
     const isNotEmpty = Object.keys(data).length > 0;
 
     if (isNotEmpty){
-        data.subject = getSubject(data.subject);
+        data.technology = getTechnology(data.technology);
 
-        proffys.push(data);
+        devs.push(data);
 
-        return res.redirect("/study");
+        return res.redirect("/contract");
     }
 
-    return res.render("give-classes.html", {subjects, weekdays}); //__dirname é o diretorio do script que está sendo executado
+    return res.render("project.html", {technologys, weekdays}); //__dirname é o diretorio do script que está sendo executado
 }
 
 const express = require('express');  //Chamar servidor
@@ -103,6 +101,6 @@ server
 .use(express.static("public"))
 //rotas do aplicativo
 .get("/", pageLanding)// (req, res) => é um arrow function, um função curta.
-.get("/study", pageStudy)
-.get("/give-classes", pageGiveClasses)
+.get("/contract", pageContract)
+.get("/project", pageProject)
 .listen(5500) //liberando a porta 5500 do computador.

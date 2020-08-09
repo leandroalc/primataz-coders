@@ -30,15 +30,15 @@
                 <img src="/images/logo-primataz.png" alt="Primataz">
             </div>
             <div class="header-content">
-                <strong>Esses são os coders disponíveis.</strong>
+                <strong>Esses são os devs disponíveis.</strong>
                 <form id="search-teachers">
                     <div class="select-block">
-                        <label for="subject">Tecnologia</label>
-                        <select name="subject" id="subject">
+                        <label for="technology">Tecnologia</label>
+                        <select name="technology" id="technology">
                             <option value="" disabled="" hidden="">Selecione uma opção</option>
-                            {%for subject in subjects%}
-                                <option value="{{loop.index}}" {{"selected" if filters.subject == loop.index }}>
-                                    {{subject}}
+                            {%for technology in technologys%}
+                                <option value="{{loop.index}}" {{"selected" if filters.technology == loop.index }}>
+                                    {{technology}}
                                 </option>
                             {%endfor%}
                         </select>
@@ -67,26 +67,26 @@
         </header>
 
         <main>
-            {%for proffy in proffys%}
+            {%for dev in devs%}
                 <article class="teacher-item">
                     <header>
                         <img 
-                            src="{{proffy.avatar}}" 
-                            alt="{{proffy.name}}">
+                            src="{{dev.avatar}}" 
+                            alt="{{dev.name}}">
                         <div>
-                            <strong>{{proffy.name}}</strong>
-                            <span>{{proffy.subject}}</span>
+                            <strong>{{dev.name}}</strong>
+                            <span>{{dev.technology}}</span>
                         </div>
                     </header>
                 
-                    <p>{{proffy.bio}}</p>
+                    <p>{{dev.bio}}</p>
                 
                     <footer>
                         <p>
-                            Preço/hora<strong>R$ {{proffy.cost}}</strong>
+                            Preço/hora<strong>R$ {{dev.cost}}</strong>
                         </p>
-                            <a href="https://api.whatsapp.com/send?l=pt_BR&phone=55{{proffy.whatsapp}}&
-                            text=Tenho interesse na sua aula de {{proffy.subject}} {{proffy.name}}"
+                            <a href="https://api.whatsapp.com/send?l=pt_BR&phone=55{{dev.whatsapp}}&
+                            text=Tenho interesse na sua aula de {{dev.technology}} {{dev.name}}"
                             class="button" target="_blank">
                                 <img src="/images/icons/whatsapp.svg" alt="Whatsapp">Entrar em contato
                             </a>
