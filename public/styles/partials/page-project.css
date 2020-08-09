@@ -75,6 +75,8 @@
 }
 
 #page-give-classes main footer p img{
+    width: 30px;
+    height: 30px;
     margin-right: 2rem;
 }
 

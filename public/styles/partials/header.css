@@ -14,8 +14,9 @@
     padding: 1.6rem 0;
 }
 
-.page-header .top-bar-container a{
-    height: 3.2rem;
+.page-header .top-bar-container a img{
+    width: 40px;
+    height: 40px;
     transition: opacity 0.2s;
 }
 
